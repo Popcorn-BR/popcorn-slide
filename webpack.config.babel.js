@@ -10,7 +10,6 @@ module.exports = {
   output: {
     path: Path.join(__dirname, 'dist'),
     libraryTarget: 'umd',
-    library: 'PopcornCanvas',
   },
   devtool: 'source-map',
   module: {

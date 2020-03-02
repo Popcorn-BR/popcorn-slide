@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+// import 'babel-polyfill';
 import DrawImage from './DrawImage';
 import MakeSlide from './MakeSlide';
 import DrawMark from './DrawMark';

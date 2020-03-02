@@ -5,8 +5,9 @@
   "main": "lib/index.js",
   "scripts": {
     "clear": "rimraf lib",
-    "build": "npm run clear && ./node_modules/.bin/babel --out-dir lib src",
-    "build:watch": "npm run build -- --watch",
+    "create:lib": "./node_modules/.bin/babel --out-dir lib src",
+    "build": "npm run clear && npm run create:lib",
+    "build:watch": "npm run clear && npm run create:lib -- --watch",
     "build:umd": "./node_modules/.bin/webpack --output-filename popcorn-canvas.umd.js --mode=development",
     "build:umd:min": "./node_modules/.bin/webpack --output-filename popcorn-canvas.umd.min.js --mode=production",
     "build:all": "npm run build && npm run build:umd && npm run build:umd:min",
@@ -65,8 +66,5 @@
     "sinon-chai": "^3.5.0",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
-  },
-  "dependencies": {
-    "babel-polyfill": "^6.26.0"
   }
 }
