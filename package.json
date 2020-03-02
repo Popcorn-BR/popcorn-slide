@@ -1,6 +1,6 @@
 {
   "name": "popcorn-canvas",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A lib to create a slide images with canvas",
   "main": "lib/index.js",
   "scripts": {
