@@ -1,40 +1,40 @@
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
 
-import Service from '../src/index';
+import { PopcornCanvas } from '../src/Popcorn';
 
 chai.use(sinonChai);
 global.fetch = require('node-fetch');
 
-describe('Service', () => {
-  const service = new Service(null, [], 1, 1);
+describe('Popcorn', () => {
+  const popcorn = new PopcornCanvas({ canvas: null, list: [], width: 1, height: 1 });
   describe('smoke test', () => {
     it('should have init method', () => {
-      expect(service.init).to.exist;
+      expect(popcorn.init).to.exist;
     });
 
     it('should have drawShapes method', () => {
-      expect(service.drawShapes).to.exist;
+      expect(popcorn.drawShapes).to.exist;
     });
 
     it('should have recreateMarkers method', () => {
-      expect(service.recreateMarkers).to.exist;
+      expect(popcorn.recreateMarkers).to.exist;
     });
 
     it('should have markersClicked method', () => {
-      expect(service.markersClicked).to.exist;
+      expect(popcorn.markersClicked).to.exist;
     });
 
     it('should have initEvents method', () => {
-      expect(service.initEvents).to.exist;
+      expect(popcorn.initEvents).to.exist;
     });
 
     it('should have next method', () => {
-      expect(service.next).to.exist;
+      expect(popcorn.next).to.exist;
     });
 
     it('should have previous method', () => {
-      expect(service.previous).to.exist;
+      expect(popcorn.previous).to.exist;
     });
   });
 });

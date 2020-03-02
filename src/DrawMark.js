@@ -27,6 +27,7 @@ class DrawMark {
   }
 
   set() {
+    if (!this.ctx) return;
     this.ctx.beginPath();
     this.ctx.fillStyle = this.color;
     this.ctx.fillRect(this.x, this.y, this.width, this.height);
