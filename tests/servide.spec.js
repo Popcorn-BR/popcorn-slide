@@ -1,7 +1,7 @@
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
 
-import Service from '../src/Service';
+import Service from '../src/index';
 
 chai.use(sinonChai);
 global.fetch = require('node-fetch');
