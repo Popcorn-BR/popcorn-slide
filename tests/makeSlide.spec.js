@@ -4,7 +4,6 @@ import sinonChai from 'sinon-chai';
 import MakeSlide from '../src/MakeSlide';
 
 chai.use(sinonChai);
-global.fetch = require('node-fetch');
 
 describe('MakeSlide', () => {
   const makeSlide = new MakeSlide();
@@ -35,10 +34,6 @@ describe('MakeSlide', () => {
 
     it('should have mouseMove method', () => {
       expect(makeSlide.mouseMove).to.exist;
-    });
-
-    it('should have onPointerUp method', () => {
-      expect(makeSlide.onPointerUp).to.exist;
     });
 
     it('should have getLimitX method', () => {

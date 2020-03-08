@@ -4,7 +4,6 @@ import sinonChai from 'sinon-chai';
 import DrawImage from '../src/DrawImage';
 
 chai.use(sinonChai);
-global.fetch = require('node-fetch');
 
 describe('DrawImage', () => {
   const drawImage = new DrawImage();
@@ -14,6 +13,7 @@ describe('DrawImage', () => {
     });
 
     it('should have trackTransforms method', () => {
+      // eslint-disable-next-line no-unused-expressions
       expect(drawImage.trackTransforms).to.exist;
     });
   });

@@ -20,6 +20,7 @@ export default class PopcornCanvas {
   }
 
   async init() {
+    if (!this.canvas) return;
     this.canvas.width = this.width;
     this.canvas.height = this.height;
 
@@ -53,6 +54,7 @@ export default class PopcornCanvas {
   }
 
   async drawShapes() {
+    if (!this.canvas) return;
     setInterval(async () => {
       await this.drawImage.redraw();
     }, 1000 / 60);

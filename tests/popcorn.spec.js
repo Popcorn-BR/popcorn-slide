@@ -1,10 +1,9 @@
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
 
-import { PopcornCanvas } from '../src/Popcorn';
+import PopcornCanvas from '../src/index';
 
 chai.use(sinonChai);
-global.fetch = require('node-fetch');
 
 describe('Popcorn', () => {
   const popcorn = new PopcornCanvas({ canvas: null, list: [], width: 1, height: 1 });
@@ -15,14 +14,6 @@ describe('Popcorn', () => {
 
     it('should have drawShapes method', () => {
       expect(popcorn.drawShapes).to.exist;
-    });
-
-    it('should have recreateMarkers method', () => {
-      expect(popcorn.recreateMarkers).to.exist;
-    });
-
-    it('should have markersClicked method', () => {
-      expect(popcorn.markersClicked).to.exist;
     });
 
     it('should have initEvents method', () => {

@@ -6,6 +6,8 @@ module.exports = {
         "import"
     ],
     "rules": {
-      "no-undef": "off"
+      "no-undef": "off",
+      "no-unused-expressions": "off",
+      "import/no-extraneous-dependencies": "off"
     }
 };

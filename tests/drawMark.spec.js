@@ -4,7 +4,6 @@ import sinonChai from 'sinon-chai';
 import DrawMark from '../src/DrawMark';
 
 chai.use(sinonChai);
-global.fetch = require('node-fetch');
 
 describe('DrawImage', () => {
   const drawMark = new DrawMark();

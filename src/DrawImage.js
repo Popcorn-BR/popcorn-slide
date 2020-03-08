@@ -32,6 +32,7 @@ class DrawImage {
   }
   // eslint-disable-next-line class-methods-use-this
   trackTransforms() {
+    if (!this.ctx) return;
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     let xform = svg.createSVGMatrix();
 

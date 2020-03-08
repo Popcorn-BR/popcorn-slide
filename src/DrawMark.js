@@ -27,6 +27,7 @@ class DrawMark {
   }
 
   set() {
+    if (!this.ctx) return;
     const { left, top, width, height } = this.createPosition();
 
     this.x = left;
