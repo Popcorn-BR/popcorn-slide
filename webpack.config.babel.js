@@ -1,24 +1,18 @@
-const Webpack = require('webpack');
+import { join } from 'path';
 
-const Path = require('path');
+const include = join(__dirname, 'src');
 
-module.exports = {
-  entry: {
-    path: Path.join(__dirname, 'src', 'index.js'),
-  },
-  mode: 'production',
+export default {
+  entry: './index',
   output: {
-    path: Path.join(__dirname, 'dist'),
+    path: join(__dirname, 'dist'),
     libraryTarget: 'umd',
+    library: 'PopcornCanvas',
   },
   devtool: 'source-map',
   module: {
-    rules: [
-      {
-        exclude: /node_modules/,
-        test: /\.js$/,
-        use: 'babel-loader',
-      },
+    loaders: [
+      { test: /\.js$/, loader: 'babel-loader', include },
     ],
   },
 };

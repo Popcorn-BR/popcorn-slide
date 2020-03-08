@@ -36,41 +36,41 @@ class DrawImage {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     let xform = svg.createSVGMatrix();
 
-    ctx.getTransform = () => xform;
+    this.ctx.getTransform = () => xform;
 
     const savedTransforms = [];
     const save = ctx.save;
-    ctx.save = () => {
+    this.ctx.save = () => {
       savedTransforms.push(xform.translate(0, 0));
       return save.call(ctx);
     };
 
     const restore = ctx.restore;
-    ctx.restore = () => {
+    this.ctx.restore = () => {
       xform = savedTransforms.pop();
       return restore.call(ctx);
     };
 
     const s = ctx.scale;
-    ctx.scale = (sx, sy) => {
+    this.ctx.scale = (sx, sy) => {
       xform = xform.scaleNonUniform(sx, sy);
       return s.call(ctx, sx, sy);
     };
 
     const rotate = ctx.rotate;
-    ctx.rotate = (radians) => {
+    this.ctx.rotate = (radians) => {
       xform = xform.rotate((radians * 180) / Math.PI);
       return rotate.call(ctx, radians);
     };
 
     const translate = ctx.translate;
-    ctx.translate = (dx, dy) => {
+    this.ctx.translate = (dx, dy) => {
       xform = xform.translate(dx, dy);
       return translate.call(ctx, dx, dy);
     };
 
     const transform = ctx.transform;
-    ctx.transform = (a, b, c, d, e, f) => {
+    this.ctx.transform = (a, b, c, d, e, f) => {
       const m2 = svg.createSVGMatrix();
       m2.a = a;
       m2.b = b;
@@ -83,7 +83,7 @@ class DrawImage {
     };
 
     const setTransform = ctx.setTransform;
-    ctx.setTransform = (a, b, c, d, e, f) => {
+    this.ctx.setTransform = (a, b, c, d, e, f) => {
       xform.a = a;
       xform.b = b;
       xform.c = c;
@@ -94,7 +94,7 @@ class DrawImage {
     };
 
     const pt = svg.createSVGPoint();
-    ctx.transformedPoint = (x, y) => {
+    this.ctx.transformedPoint = (x, y) => {
       pt.x = x;
       pt.y = y;
       return pt.matrixTransform(xform.inverse());

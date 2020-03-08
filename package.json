@@ -1,22 +1,22 @@
 {
   "name": "popcorn-canvas",
-  "version": "0.2.3",
-  "description": "A lib to create a slide images with canvas",
+  "version": "0.2.4",
+  "description": "A lib to create a slide images with canvas.",
   "main": "lib/index.js",
   "scripts": {
     "clear": "rimraf lib",
-    "create:lib": "./node_modules/.bin/babel --out-dir lib src",
-    "build": "npm run clear && npm run create:lib",
-    "build:watch": "npm run clear && npm run create:lib -- --watch",
-    "build:umd": "./node_modules/.bin/webpack --output-filename popcorn-canvas.umd.js --mode=development",
-    "build:umd:min": "./node_modules/.bin/webpack --output-filename popcorn-canvas.umd.min.js --mode=production",
+    "build": "npm run clear && ./node_modules/.bin/babel --out-dir lib src",
+    "build:watch": "npm run build -- --watch",
+    "build:umd": "./node_modules/.bin/webpack --output-filename popcorn-canvas.umd.js",
+    "build:umd:min": "./node_modules/.bin/webpack --output-filename popcorn-canvas.umd.min.js -p",
     "build:all": "npm run build && npm run build:umd && npm run build:umd:min",
     "lint": "./node_modules/.bin/eslint src/*.js",
     "prepush": "npm run lint",
-    "test": "./node_modules/.bin/mocha tests/**/*.spec.js --require @babel/register",
-    "test:tdd": "./node_modules/.bin/mocha tests/**/*.spec.js --require @babel/register --watch",
+    "test": "./node_modules/.bin/mocha tests/**/*.spec.js --require babel-register",
+    "test:tdd": "./node_modules/.bin/mocha tests/**/*.spec.js --require babel-register --watch",
     "test:coverage": "nyc npm test",
-    "coveralls": "npm run test:coverage && nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "npm run test:coverage && nyc report --reporter=text-lcov | coveralls",
+    "prepublish": "npm run build:all"
   },
   "files": [
     "dist",
@@ -40,34 +40,31 @@
     "tdd",
     "library"
   ],
-  "author": "Denner Rondinely <dennerrondinelyqui@gmail.com> (https://dennerrondinely.com/)",
+  "author": "Dênner Rondinely <denner.rondinely@gmail.com> (https://dennerrondinely.com/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dennerrondinely/popcorn-canvas/issues"
   },
   "homepage": "https://github.com/dennerrondinely/popcorn-canvas#readme",
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.6",
-    "@babel/preset-env": "^7.8.6",
-    "@babel/register": "^7.8.6",
-    "babel-loader": "^8.0.6",
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.3.2",
+    "babel-register": "^6.24.0",
     "chai": "^3.5.0",
-    "coveralls": "^3.0.9",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^11.3.2",
-    "eslint-plugin-import": "^2.20.1",
+    "coveralls": "^2.13.0",
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
     "husky": "^0.11.9",
-    "mocha": "^3.5.3",
-    "node-fetch": "^2.6.0",
-    "nyc": "^10.3.2",
-    "rimraf": "^2.7.1",
-    "sinon": "^9.0.0",
-    "sinon-chai": "^3.5.0",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.11"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.8.3"
+    "mocha": "^3.2.0",
+    "node-fetch": "^1.6.3",
+    "nyc": "^10.2.0",
+    "rimraf": "^2.6.1",
+    "sinon": "^6.1.3",
+    "sinon-chai": "^3.2.0",
+    "webpack": "^2.4.1"
   }
 }
