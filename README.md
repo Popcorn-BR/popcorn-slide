@@ -23,7 +23,7 @@ $ npm install popcorn-canvas --save
 
 ```js
 // to import a specific method
-import PopcornSlide from 'popcorn-canvas';
+import PopcornSlide from 'popcorn-slide';
 
 const canvas = document.getElementById('canvas')
 const config = {
