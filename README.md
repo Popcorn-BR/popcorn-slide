@@ -1,6 +1,6 @@
 # Popcorn Slide
 
-[![Build Status](https://travis-ci.com/dennerrondinely/popcorn-slide.svg?branch=master)](https://travis-ci.com/dennerrondinely/popcorn-slide) [![Coverage Status](https://coveralls.io/repos/github/dennerrondinely/popcorn-slide/badge.svg?branch=master)](https://coveralls.io/github/dennerrondinely/popcorn-slide?branch=master)
+[![Build Status](https://travis-ci.com/dennerrondinely/popcorn-slide.svg?branch=master)](https://travis-ci.com/dennerrondinely/popcorn-slide) [![Coverage Status](https://coveralls.io/repos/github/dennerrondinely/popcorn-slide/badge.svg?branch=dependabot/npm_and_yarn/eslint-4.18.2)](https://coveralls.io/github/dennerrondinely/popcorn-slide?branch=dependabot/npm_and_yarn/eslint-4.18.2)
 
 A component to work with the Canvas.
 
