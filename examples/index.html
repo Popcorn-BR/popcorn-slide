@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Spotify Wrapper Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide</title>
+  <script src="https://kit.fontawesome.com/4d481293c4.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <div class="container-canvas">
+    <button class="button button-left"><i class="fas fa-angle-left"></i></button>
+    <canvas></canvas>
+    <button class="button button-right"><i class="fas fa-angle-right"></i></button>
+  </div>
+  <script src="../dist/popcorn-canvas.umd.js"></script>
+  <script>
+    const canvas = document.querySelector('canvas');
+    const list = [
+      { url: 'https://upload.wikimedia.org/wikipedia/pt/thumb/6/6d/Alita-anjo-de-combate-posterr.jpg/250px-Alita-anjo-de-combate-posterr.jpg' },
+      { url: 'https://www.diariodetaubateregiao.com.br/dt/wp-content/uploads/2019/02/artigo-05-1.jpg' },
+      { url: 'https://sucodemanga.com.br/wp-content/uploads/2019/03/alita-anjo-de-combate-1.jpg' },
+      { url: 'https://www.diariodetaubateregiao.com.br/dt/wp-content/uploads/2019/02/artigo-05-1.jpg' },
+      { url: 'https://br.web.img3.acsta.net/pictures/19/01/31/11/55/2714336.jpg' },
+      { url: 'https://upload.wikimedia.org/wikipedia/pt/thumb/6/6d/Alita-anjo-de-combate-posterr.jpg/250px-Alita-anjo-de-combate-posterr.jpg' },
+      { url: 'https://br.web.img3.acsta.net/pictures/19/01/31/11/55/2714336.jpg' },
+      { url: 'https://sucodemanga.com.br/wp-content/uploads/2019/03/alita-anjo-de-combate-1.jpg' },
+    ];
 
-<div id="albums"></div>
+    const config = { canvas, list, width: 1400, height: 662 }
 
-<script src="../dist/spotify-wrapper.umd.js"></script>
+    const popcorn = new PopcornCanvas(config);
 
-<script>
-  const spotify = new SpotifyWrapper({
-    token: 'BQAvnfpiNS3Jw8NA8VT56xtmHmIwyLVd9S1qLu6-zDN-hARckKKcqbsFc8U2BmDM05sjC9uulBKPLNG7mZpnDdtVw4YO13UB6R5TfOEaUbh-NteOruBzJVBRH-whR0aPTTaQvMjsM7AAuqgYRAs'
-  })
+    document.querySelectorAll('button')[0].addEventListener('click', () => popcorn.previous());
+    document.querySelectorAll('button')[1].addEventListener('click', () => popcorn.next());
 
-  const albums = spotify.search.albums('Soundgarden');
-  const albumsEl = document.getElementById('albums');
+// service.markersClicked(res => console.log(res));
 
-  albums
-    .then(data => {
-      markup = data.albums.items.map(item =>
-        `<img src='${item.images[0].url}' alt='${item.name}' />`
-      ).join('');
-
-      albumsEl.innerHTML = markup;
-    })
-</script>
+  </script>
 </body>
+
 </html>

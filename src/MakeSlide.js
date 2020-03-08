@@ -1,5 +1,7 @@
+import Zoom from './Zoom';
+
 class MakeSlide {
-  constructor(canvas, list, ctx, width, scale = 1) {
+  constructor(canvas, list, ctx, width, height, scale) {
     this.canvas = canvas;
     this.list = list;
     this.ctx = ctx;
@@ -11,34 +13,48 @@ class MakeSlide {
     this.tappedCount = 0;
     this.tappedCount = 0;
     this.scale = scale;
+    this.scaleCalc = 0;
     this.activeZoom = false;
-    this.oldDBClick = 0;
-    this.oldTranslateX = 0;
+    this.height = height;
+    this.classZoom = '';
+
+    this.init();
   }
 
-  zoom(clicks) {
-    // eslint-disable-next-line no-restricted-properties
-    const factor = Math.pow(2, clicks);
-    this.ctx.translate(this.dragStart.x, this.dragStart.y);
-    this.ctx.scale(factor, factor);
-    this.ctx.translate(-this.dragStart.x, -this.dragStart.y);
-    if (this.oldDBClick && clicks === -1) {
-      let x = (this.oldDBClick - this.dragStart.x);
-      if (this.oldTranslateX !== this.translateX) {
-        const t = this.oldTranslateX - this.translateX;
-        let newX = x;
-        if ((t > 0 && x < 0) || (t < 0 && x > 0)) { newX = x * -1; }
+  init() {
+    this.classZoom = new Zoom(this.ctx, this.scale);
+  }
 
-        x = (newX - t) * -1;
-      }
-      this.translateX += -x;
+  zoom(offX, offY) {
+    const params = [
+      this.dragStart.x,
+      this.dragStart.y,
+      this.translateX,
+      this.translateY,
+    ];
+
+    if (this.activeZoom) {
+      const { y, x } = this.classZoom.zoomOut(...params);
+
+      this.translateX = x;
+      this.translateY = y;
+      this.scaleCalc = 0;
     }
-    this.oldDBClick = this.dragStart.x;
-    this.oldTranslateX = this.translateX;
+
+
+    if (!this.activeZoom) {
+      const { x, y } = this.classZoom.zoomIn(...params, offX, offY);
+
+      this.translateX = x;
+      this.translateY = y;
+      this.scaleCalc = this.scale - 1;
+    }
+
+
     this.resetExtremities();
   }
 
-  next(callBack) {
+  next() {
     let calc = 0;
 
     // centraliza as imagens que não estão nas extremidades
@@ -67,12 +83,11 @@ class MakeSlide {
 
     this.ctx.translate(calc, 0);
     this.translateX += calc;
-
-    callBack(this.translateX);
   }
 
-  previous(callBack) {
+  previous() {
     let calc = 0;
+    if (this.position < 1) return;
     calc = ((this.translateX + this.list[this.position - 1].position) * -1) +
     ((this.width / 2) - (this.list[this.position - 1].width / 2));
 
@@ -84,24 +99,18 @@ class MakeSlide {
 
     this.position += -1;
     this.translateX += calc;
-
-    callBack(this.translateX);
   }
 
-  doubleClick(callBack) {
+  doubleClick() {
     this.canvas.addEventListener('dblclick', (evt) => {
       const x = evt.offsetX || evt.pageX - this.canvas.offsetLeft;
       const y = evt.offsetY || evt.pageY - this.canvas.offsetTop;
 
       this.dragStart = this.ctx.transformedPoint(x, y);
-      // console.log(this.dragStart.x);
-      this.zoom(this.activeZoom ? -1 : 1);
-      this.scale = this.activeZoom ? 1 : 5;
+      this.zoom(evt.offsetX, evt.offsetY);
       this.activeZoom = !this.activeZoom;
       this.dragStart = null;
       this.canvas.style.cursor = 'default';
-
-      callBack(this.translateX);
     }, false);
   }
   mouseDown() {
@@ -112,54 +121,57 @@ class MakeSlide {
     }, false);
   }
 
-  mouseUp(callBack) {
+  mouseUp() {
     this.canvas.addEventListener('mouseup', () => {
       this.dragStart = null;
       this.canvas.style.cursor = 'default';
       this.resetExtremities();
-      callBack(this.translateX);
     }, false);
   }
 
-  mouseMove(callBack) {
+  mouseMove() {
     this.canvas.addEventListener('mousemove', (event) => {
+      if (!this.dragStart) return;
+
       const lastX = event.offsetX || event.pageX - this.canvas.offsetLeft;
       const lastY = event.offsetY || event.pageY - this.canvas.offsetTop;
       const pt = this.ctx.transformedPoint(lastX, lastY);
 
 
-      if (!this.dragStart) return;
-      this.position = this.getPointX();
-      let x = (pt.x - this.dragStart.x);
-      if (this.translateX < this.getLimitX()) { x = -0.5; }
-      if (this.translateX > 0) { x = 0.5; }
-      this.translateX += x;
-      this.canvas.style.cursor = 'grabbing';
+      this.dragableSlide(pt);
 
-      this.ctx.translate(x, 0);
-      callBack(this.translateX);
+
+      this.position = this.getPointX();
+
+
+      this.canvas.style.cursor = 'grabbing';
     }, false);
   }
 
-  onPointerUp() {
-    const currTimeStamp = Date.now();
-    // Only when no sliding two far is considered as a valid tap
-    if (currTimeStamp - this.lastTapTimestamp < 300) {
-      this.tappedCount += 1;
-    } else {
-      this.tappedCount = 1;
-    }
-    this.lastTapTimestamp = Date.now();
-    if (this.tappedCount === 2) {
-      this.tappedCount = 0; // clear count on maximum tap count
-    }
+  dragableSlide(pt) {
+    let x = (pt.x - this.dragStart.x);
+    let y = (pt.y - this.dragStart.y);
+
+    if (this.translateX < this.getLimitX()) { x = -0.4; }
+    if (this.translateX > 0) { x = 0.4; }
+
+    if ((this.translateY <= this.getLimitY()) && y < 0) { y = this.activeZoom ? -0.4 : 0; }
+    if ((this.translateY >= 0) && y > 0) { y = this.activeZoom ? 0.4 : 0; }
+
+    this.translateX += x;
+    this.translateY += y;
+
+    this.ctx.translate(x, y);
   }
 
   getLimitX() {
     return (
       -(this.list[this.list.length - 1].position - this.width)
-      - this.list[this.list.length - 1].width
+      - this.list[this.list.length - 1].width - ((this.width / this.scale) * this.scaleCalc)
     );
+  }
+  getLimitY() {
+    return (-((this.height / 2) * this.scaleCalc));
   }
 
   getPosition() {
@@ -168,6 +180,7 @@ class MakeSlide {
     return point;
   }
   getPointX() {
+    if (this.translateX <= -this.list[this.list.length - 2].position) return this.list.length - 1;
     const point = this.list.findIndex((a, i) => a.position >= (this.translateX * -1) &&
     (this.translateX * -1) <= this.list[i + 1].position);
     return point;
@@ -182,6 +195,16 @@ class MakeSlide {
     if (this.translateX >= 0) {
       this.ctx.translate((this.translateX) * -1, 0);
       this.translateX += (this.translateX) * -1;
+    }
+
+    if (this.translateY <= this.getLimitY()) {
+      this.ctx.translate(0, (this.getLimitY() - this.translateY));
+      this.translateY += (this.getLimitY() - this.translateY);
+    }
+
+    if (this.translateY >= 0) {
+      this.ctx.translate(0, (this.translateY) * -1);
+      this.translateY += (this.translateY) * -1;
     }
   }
 }
