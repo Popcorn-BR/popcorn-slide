@@ -1,6 +1,6 @@
-# Spotify Wrapper
+# Popcorn Slide
 
-[![Build Status](https://travis-ci.com/dennerrondinely/popcorn-canvas.svg?branch=master)](https://travis-ci.com/dennerrondinely/popcorn-canvas) [![Coverage Status](https://coveralls.io/repos/github/dennerrondinely/popcorn-canvas/badge.svg?branch=master)](https://coveralls.io/github/dennerrondinely/popcorn-canvas?branch=master)
+[![Build Status](https://travis-ci.com/dennerrondinely/popcorn-slide.svg?branch=master)](https://travis-ci.com/dennerrondinely/popcorn-slide) [![Coverage Status](https://coveralls.io/repos/github/dennerrondinely/popcorn-slide/badge.svg?branch=master)](https://coveralls.io/github/dennerrondinely/popcorn-slide?branch=master)
 
 A component to work with the Canvas.
 
@@ -23,7 +23,7 @@ $ npm install popcorn-canvas --save
 
 ```js
 // to import a specific method
-import PopcornCanvas from 'popcorn-canvas';
+import PopcornSlide from 'popcorn-canvas';
 
 const canvas = document.getElementById('canvas')
 const config = {
@@ -38,7 +38,7 @@ const config = {
   height: 662
 }
 
-const popcorn = new PopcornCanvas(config);
+const popcorn = new PopcornSlide(config);
 
 ```
 
@@ -53,7 +53,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 |:---------------------:|
 |  [Denner Rondinely](https://github.com/dennerrondinely/)   |
 
-See also the list of [contributors](https://github.com/dennerrondinely/popcorn-canvas/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/dennerrondinely/popcorn-slide/contributors) who participated in this project.
 
 ## License
 

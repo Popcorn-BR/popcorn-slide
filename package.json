@@ -1,14 +1,14 @@
 {
-  "name": "popcorn-canvas",
-  "version": "0.3.1",
+  "name": "popcorn-slide",
+  "version": "0.3.2",
   "description": "A lib to create a slide images with canvas.",
   "main": "lib/index.js",
   "scripts": {
     "clear": "rimraf lib",
     "build": "npm run clear && ./node_modules/.bin/babel --out-dir lib src",
     "build:watch": "npm run build -- --watch",
-    "build:umd": "./node_modules/.bin/webpack --output-filename popcorn-canvas.umd.js",
-    "build:umd:min": "./node_modules/.bin/webpack --output-filename popcorn-canvas.umd.min.js -p",
+    "build:umd": "./node_modules/.bin/webpack --output-filename popcorn-slide.umd.js",
+    "build:umd:min": "./node_modules/.bin/webpack --output-filename popcorn-slide.umd.min.js -p",
     "build:all": "npm run build && npm run build:umd && npm run build:umd:min",
     "lint": "./node_modules/.bin/eslint src/*.js",
     "prepush": "npm run lint",
@@ -33,19 +33,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dennerrondinely/popcorn-canvas.git"
+    "url": "git+https://github.com/dennerrondinely/popcorn-slide.git"
   },
   "keywords": [
     "js",
     "tdd",
-    "library"
+    "library",
+    "Canvas",
+    "slide"
   ],
   "author": "Dênner Rondinely <denner.rondinely@gmail.com> (https://dennerrondinely.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dennerrondinely/popcorn-canvas/issues"
+    "url": "https://github.com/dennerrondinely/popcorn-slide/issues"
   },
-  "homepage": "https://github.com/dennerrondinely/popcorn-canvas#readme",
+  "homepage": "https://github.com/dennerrondinely/popcorn-slide#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.5",

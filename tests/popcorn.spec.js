@@ -1,12 +1,12 @@
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
 
-import PopcornCanvas from '../src/index';
+import PopcornSlide from '../src/index';
 
 chai.use(sinonChai);
 
 describe('Popcorn', () => {
-  const popcorn = new PopcornCanvas({ canvas: null, list: [], width: 1, height: 1 });
+  const popcorn = new PopcornSlide({ canvas: null, list: [], width: 1, height: 1 });
   describe('smoke test', () => {
     it('should have init method', () => {
       expect(popcorn.init).to.exist;

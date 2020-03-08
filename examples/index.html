@@ -15,7 +15,7 @@
     <canvas></canvas>
     <button class="button button-right"><i class="fas fa-angle-right"></i></button>
   </div>
-  <script src="../dist/popcorn-canvas.umd.js"></script>
+  <script src="../dist/popcorn-slide.umd.js"></script>
   <script>
     const canvas = document.querySelector('canvas');
     const list = [
@@ -31,7 +31,7 @@
 
     const config = { canvas, list, width: 1400, height: 662 }
 
-    const popcorn = new PopcornCanvas(config);
+    const popcorn = new PopcornSlide(config);
 
     document.querySelectorAll('button')[0].addEventListener('click', () => popcorn.previous());
     document.querySelectorAll('button')[1].addEventListener('click', () => popcorn.next());

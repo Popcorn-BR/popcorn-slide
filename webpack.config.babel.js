@@ -7,7 +7,7 @@ export default {
   output: {
     path: join(__dirname, 'dist'),
     libraryTarget: 'umd',
-    library: 'PopcornCanvas',
+    library: 'PopcornSlide',
   },
   devtool: 'source-map',
   module: {

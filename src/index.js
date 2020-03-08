@@ -2,7 +2,7 @@ import 'babel-polyfill';
 import DrawImage from './DrawImage';
 import MakeSlide from './MakeSlide';
 
-export default class PopcornCanvas {
+export default class PopcornSlide {
   constructor({ canvas, list, width, height, scale = 2 }) {
     this.canvas = canvas;
     this.list = list;
@@ -61,6 +61,7 @@ export default class PopcornCanvas {
   }
 
   async initEvents() {
+    if (!this.canvas) return;
     this.makeSlide.mouseMove();
 
     this.makeSlide.mouseUp();
