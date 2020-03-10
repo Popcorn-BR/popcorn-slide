@@ -19,7 +19,7 @@ export default class PopcornSlide {
     this.initEvents();
   }
 
-  async init() {
+  init() {
     if (!this.canvas) return;
     this.canvas.width = this.width;
     this.canvas.height = this.height;
@@ -53,29 +53,35 @@ export default class PopcornSlide {
     );
   }
 
-  async drawShapes() {
+  drawShapes() {
     if (!this.canvas) return;
-    setInterval(async () => {
-      await this.drawImage.redraw();
-    }, 1000 / 60);
+    setTimeout(() => {
+      this.drawImage.redraw();
+    }, 1000);
   }
 
-  async initEvents() {
+  initEvents() {
+    let interval;
+
     if (!this.canvas) return;
     this.makeSlide.mouseMove();
 
-    this.makeSlide.mouseUp();
+    this.makeSlide.mouseUp(() => clearInterval(interval));
 
-    this.makeSlide.mouseDown();
+    this.makeSlide.mouseDown(() => {
+      interval = setInterval(() => {
+        this.drawImage.redraw();
+      }, 1000 / 60);
+    });
 
-    this.makeSlide.doubleClick();
+    this.makeSlide.doubleClick(() => this.drawImage.redraw());
   }
 
   next() {
-    this.makeSlide.next();
+    this.makeSlide.next(() => this.drawImage.redraw());
   }
 
   previous() {
-    this.makeSlide.previous();
+    this.makeSlide.previous(() => this.drawImage.redraw());
   }
 }

@@ -54,7 +54,7 @@ class MakeSlide {
     this.resetExtremities();
   }
 
-  next() {
+  next(callBack) {
     let calc = 0;
 
     // centraliza as imagens que não estão nas extremidades
@@ -83,9 +83,11 @@ class MakeSlide {
 
     this.ctx.translate(calc, 0);
     this.translateX += calc;
+
+    callBack();
   }
 
-  previous() {
+  previous(callBack) {
     let calc = 0;
     if (this.position < 1) return;
     calc = ((this.translateX + this.list[this.position - 1].position) * -1) +
@@ -99,9 +101,11 @@ class MakeSlide {
 
     this.position += -1;
     this.translateX += calc;
+
+    callBack();
   }
 
-  doubleClick() {
+  doubleClick(callBack) {
     this.canvas.addEventListener('dblclick', (evt) => {
       const x = evt.offsetX || evt.pageX - this.canvas.offsetLeft;
       const y = evt.offsetY || evt.pageY - this.canvas.offsetTop;
@@ -111,21 +115,27 @@ class MakeSlide {
       this.activeZoom = !this.activeZoom;
       this.dragStart = null;
       this.canvas.style.cursor = 'default';
+
+      callBack();
     }, false);
   }
-  mouseDown() {
+  mouseDown(callBack) {
     this.canvas.addEventListener('mousedown', (evt) => {
       const x = evt.offsetX || evt.pageX - this.canvas.offsetLeft;
       const y = evt.offsetY || evt.pageY - this.canvas.offsetTop;
       this.dragStart = this.ctx.transformedPoint(x, y);
+
+      callBack();
     }, false);
   }
 
-  mouseUp() {
+  mouseUp(callBack) {
     this.canvas.addEventListener('mouseup', () => {
       this.dragStart = null;
       this.canvas.style.cursor = 'default';
       this.resetExtremities();
+
+      callBack();
     }, false);
   }
 
