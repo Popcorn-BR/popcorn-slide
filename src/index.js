@@ -39,7 +39,7 @@ export default class PopcornSlide {
     imgList = imgList.map((item, i) => {
       const b = item;
       b.position = i !== 0 ?
-       listWidth[i - 1] + imgList[i - 1].position : 0; // refatorar esse calculo
+        listWidth[i - 1] + imgList[i - 1].position : 0; // refatorar esse calculo
       return b;
     });
 
