@@ -55,6 +55,7 @@ export default class PopcornSlide {
   }
 
   getImages(list) {
+    if (!list || list.length === 0) return list;
     return list.map(src => new Promise((resolve, reject) => {
       const img = new Image();
       img.src = `${src.url}`;
