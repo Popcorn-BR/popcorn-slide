@@ -27,5 +27,9 @@ describe('Popcorn', () => {
     it('should have previous method', () => {
       expect(popcorn.previous).to.exist;
     });
+
+    it('should have getImages method', () => {
+      expect(popcorn.getImages).to.exist;
+    });
   });
 });

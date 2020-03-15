@@ -15,24 +15,16 @@ export default class PopcornSlide {
     this.scale = scale;
 
     this.init();
-    this.drawShapes();
-    this.initEvents();
   }
 
-  init() {
+  async init() {
     if (!this.canvas) return;
     this.canvas.width = this.width;
     this.canvas.height = this.height;
 
     this.ctx = this.canvas.getContext('2d');
 
-    let imgList = this.list.map((src) => {
-      const img = new Image();
-      img.src = `${src.url}`;
-      const ratio = img.height / img.width;
-      const width = this.height / ratio.toFixed(1);
-      return { width, height: this.height, img, position: 0 };
-    });
+    let imgList = await Promise.all(this.getImages(this.list));
 
     const listWidth = imgList.map(i => i.width);
 
@@ -51,13 +43,30 @@ export default class PopcornSlide {
       this.height,
       this.scale
     );
+
+
+    this.drawShapes();
+    this.initEvents();
   }
 
   drawShapes() {
     if (!this.canvas) return;
-    setTimeout(() => {
-      this.drawImage.redraw();
-    }, 1000);
+    this.drawImage.redraw();
+  }
+
+  getImages(list) {
+    if (!list || list.length === 0) return list;
+    return list.map(src => new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = `${src.url}`;
+      img.onload = () => {
+        const ratio = img.height / img.width;
+        const width = this.height / ratio.toFixed(1);
+        resolve({ width, height: this.height, img, position: 0 });
+      };
+
+      img.onerror = reject;
+    }));
   }
 
   initEvents() {
@@ -66,7 +75,10 @@ export default class PopcornSlide {
     if (!this.canvas) return;
     this.makeSlide.mouseMove();
 
-    this.makeSlide.mouseUp(() => clearInterval(interval));
+    this.makeSlide.mouseUp(() => {
+      this.drawShapes();
+      clearInterval(interval);
+    });
 
     this.makeSlide.mouseDown(() => {
       interval = setInterval(() => {
@@ -74,14 +86,14 @@ export default class PopcornSlide {
       }, 1000 / 60);
     });
 
-    this.makeSlide.doubleClick(() => this.drawImage.redraw());
+    this.makeSlide.doubleClick(() => this.drawShapes());
   }
 
   next() {
-    this.makeSlide.next(() => this.drawImage.redraw());
+    this.makeSlide.next(() => this.drawShapes());
   }
 
   previous() {
-    this.makeSlide.previous(() => this.drawImage.redraw());
+    this.makeSlide.previous(() => this.drawShapes());
   }
 }
