@@ -1,3 +1,5 @@
+<p align="center"><img width="300" src="https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2FPopcorn-logo.png?alt=media&token=cfcd67f0-d790-4563-843b-7b6cdc869d63" alt="Vue logo"></p>
+
 # Popcorn Slide
 
 [![Build Status](https://travis-ci.com/dennerrondinely/popcorn-slide.svg?branch=master)](https://travis-ci.com/dennerrondinely/popcorn-slide) [![Coverage Status](https://coveralls.io/repos/github/dennerrondinely/popcorn-slide/badge.svg?branch=dependabot/npm_and_yarn/eslint-4.18.2)](https://coveralls.io/github/dennerrondinely/popcorn-slide?branch=dependabot/npm_and_yarn/eslint-4.18.2)
