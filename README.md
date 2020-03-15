@@ -7,7 +7,7 @@
 
 A component to work with the Canvas.
 
-#Preview
+# Preview
 <p align="center">
   <img width="900" src="https://raw.githubusercontent.com/dennerrondinely/popcorn-slide/feature/documentation/gif/1.gif" alt="Exemplo gif">
 </p>
