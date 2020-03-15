@@ -7,11 +7,16 @@
 
 A component to work with the Canvas.
 
+#Preview
+<p align="center"><img width="1000" src="https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2F1.gif?alt=media&token=766c349e-d7b7-41d8-a355-e81b012df670" alt="Vue logo"></p>
+<p align="center"><img width="1000" src="https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2F2.gif?alt=media&token=3a1900a3-598a-456a-9c95-559ba3fe7277" alt="Vue logo"></p>
+<p align="center"><img width="1000" src="https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2F3.gif?alt=media&token=fc68b938-8f79-4b02-b585-cfe9e9e8c6a9" alt="Vue logo"></p>
+
 ## Browser Support
 
 ![Chrome](https://cloud.githubusercontent.com/assets/398893/3528328/23bc7bc4-078e-11e4-8752-ba2809bf5cce.png) | ![Firefox](https://cloud.githubusercontent.com/assets/398893/3528329/26283ab0-078e-11e4-84d4-db2cf1009953.png) | ![Opera](https://cloud.githubusercontent.com/assets/398893/3528330/27ec9fa8-078e-11e4-95cb-709fd11dac16.png) | ![Safari](https://cloud.githubusercontent.com/assets/398893/3528331/29df8618-078e-11e4-8e3e-ed8ac738693f.png) | ![IE](https://cloud.githubusercontent.com/assets/398893/3528325/20373e76-078e-11e4-8e3a-1cb86cf506f0.png) |
 --- | --- | --- | --- | --- |
-39+ ✔ | 42+ ✔ | 29+ ✔ | 10.1+ ✔ | Nope ✘ |
+39+ ✔ | 42+ ✔ | 29+ ✔ | 10.1+ ✘ | Nope ✘ |
 
 
 ## Installation
