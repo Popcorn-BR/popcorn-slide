@@ -1,4 +1,4 @@
-<p align="center"><img width="200" src="https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2FPopcorn-logo.png?alt=media&token=cfcd67f0-d790-4563-843b-7b6cdc869d63" alt="Vue logo"></p>
+<p align="center"><img width="200" src="https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2FPopcorn-logo.png?alt=media&token=cfcd67f0-d790-4563-843b-7b6cdc869d63" alt="Popcorn Slide Logo"></p>
 
 # Popcorn Slide
 
@@ -8,9 +8,15 @@
 A component to work with the Canvas.
 
 #Preview
-![image](https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2F1.gif?alt=media&token=766c349e-d7b7-41d8-a355-e81b012df670)
-![image](https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2F2.gif?alt=media&token=3a1900a3-598a-456a-9c95-559ba3fe7277)
-![image](https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2F3.gif?alt=media&token=fc68b938-8f79-4b02-b585-cfe9e9e8c6a9)
+<p align="center">
+  <img width="900" src="https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2F1.gif?alt=media&token=766c349e-d7b7-41d8-a355-e81b012df670?raw=true" alt="Exemplo gif">
+</p>
+<p align="center">
+  <img width="900" src="https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2F2.gif?alt=media&token=3a1900a3-598a-456a-9c95-559ba3fe7277?raw=true" alt="Exemplo gif">
+</p>
+<p align="center">
+  <img width="900" src="https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2F3.gif?alt=media&token=fc68b938-8f79-4b02-b585-cfe9e9e8c6a9?raw=true" alt="Exemplo gif">
+</p>
 
 ## Browser Support
 
