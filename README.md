@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.com/dennerrondinely/popcorn-slide.svg?branch=master)](https://travis-ci.com/dennerrondinely/popcorn-slide) [![Coverage Status](https://coveralls.io/repos/github/dennerrondinely/popcorn-slide/badge.svg?branch=dependabot/npm_and_yarn/eslint-4.18.2)](https://coveralls.io/github/dennerrondinely/popcorn-slide?branch=dependabot/npm_and_yarn/eslint-4.18.2)
 ![npm](https://img.shields.io/npm/dt/popcorn-slide) ![npm](https://img.shields.io/npm/v/popcorn-slide) ![GitHub](https://img.shields.io/github/license/dennerrondinely/popcorn-slide)
 
-A component to work with the Canvas.
+Popcorn-slide is a javascript component for creating image slides with the canvas without the need for css or html.
 
 # Preview
 <p align="center">
