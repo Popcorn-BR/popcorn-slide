@@ -30,20 +30,19 @@ export default class PopcornSlide {
 
     imgList = imgList.map((item, i) => {
       const b = item;
-      b.position = i !== 0 ?
-        listWidth[i - 1] + imgList[i - 1].position : 0; // refatorar esse calculo
+      b.position = i !== 0 ? listWidth[i - 1] + imgList[i - 1].position : 0; // refatorar esse calculo
       return b;
     });
 
     this.drawImage = new DrawImage(this.canvas, this.ctx, imgList);
     this.makeSlide = new MakeSlide(
-      this.canvas, imgList,
+      this.canvas,
+      imgList,
       this.ctx,
       this.width,
       this.height,
       this.scale
     );
-
 
     this.drawShapes();
     this.initEvents();
@@ -56,17 +55,20 @@ export default class PopcornSlide {
 
   getImages(list) {
     if (!list || list.length === 0) return list;
-    return list.map(src => new Promise((resolve, reject) => {
-      const img = new Image();
-      img.src = `${src.url}`;
-      img.onload = () => {
-        const ratio = img.height / img.width;
-        const width = this.height / ratio.toFixed(1);
-        resolve({ width, height: this.height, img, position: 0 });
-      };
+    return list.map(
+      src =>
+        new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = `${src.url}`;
+          img.onload = () => {
+            const ratio = img.height / img.width;
+            const width = this.height / ratio.toFixed(1);
+            resolve({ width, height: this.height, img, position: 0 });
+          };
 
-      img.onerror = reject;
-    }));
+          img.onerror = reject;
+        })
+    );
   }
 
   initEvents() {

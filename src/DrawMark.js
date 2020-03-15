@@ -44,7 +44,7 @@ class DrawMark {
   createPosition() {
     const { x, y, width, height } = this.marker.coordinate;
     const data = {
-      left: (this.width * (x / 100)) + this.position,
+      left: this.width * (x / 100) + this.position,
       top: this.height * (y / 100),
       width: ((width - x) / 100) * this.width,
       height: ((height - y) / 100) * this.height,
