@@ -59,34 +59,36 @@ class Zoom {
 
   getY(y, translate) {
     if (!this.oldY) return translate;
-    let Y = (y - this.oldY);
+    let Y = y - this.oldY;
     let Translate = translate;
 
     if (this.oldTranslateY !== Translate) {
       const t = this.oldTranslateY - Translate;
       let newY = Y;
-      if ((t > 0 && Y < 0) || (t < 0 && Y > 0)) { newY = Y; }
+      if ((t > 0 && Y < 0) || (t < 0 && Y > 0)) {
+        newY = Y;
+      }
 
-      Y = (newY - t);
+      Y = newY - t;
     }
 
-    Translate += Y + (this.oldOffY / this.scale);
+    Translate += Y + this.oldOffY / this.scale;
 
     return Translate;
   }
 
   getX(x, translate) {
     if (!this.oldX) return translate;
-    let newX = (this.oldX - x);
+    let newX = this.oldX - x;
     let newTranslate = translate;
 
     if (this.oldTranslateX !== newTranslate) {
       const t = this.oldTranslateX - newTranslate;
 
-      newX = ((newX * -1) - t) * -1; // refatorar essa parte do codigo
+      newX = (newX * -1 - t) * -1; // refatorar essa parte do codigo
     }
 
-    newTranslate += -newX + (this.oldOffX / this.scale);
+    newTranslate += -newX + this.oldOffX / this.scale;
     return newTranslate;
   }
 }

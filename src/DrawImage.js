@@ -7,7 +7,7 @@ class DrawImage {
   }
 
   redraw() {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       if (resolve) {
         // Clear the entire canvas
         const p1 = this.ctx.transformedPoint(0, 0);
@@ -30,6 +30,7 @@ class DrawImage {
       }
     });
   }
+
   // eslint-disable-next-line class-methods-use-this
   trackTransforms() {
     if (!this.ctx) return;
@@ -39,13 +40,13 @@ class DrawImage {
     this.ctx.getTransform = () => xform;
 
     const savedTransforms = [];
-    const save = this.ctx.save;
+    const { save } = this.ctx;
     this.ctx.save = () => {
       savedTransforms.push(xform.translate(0, 0));
       return save.call(this.ctx);
     };
 
-    const restore = this.ctx.restore;
+    const { restore } = this.ctx;
     this.ctx.restore = () => {
       xform = savedTransforms.pop();
       return restore.call(this.ctx);
@@ -57,19 +58,19 @@ class DrawImage {
       return s.call(this.ctx, sx, sy);
     };
 
-    const rotate = this.ctx.rotate;
-    this.ctx.rotate = (radians) => {
+    const { rotate } = this.ctx;
+    this.ctx.rotate = radians => {
       xform = xform.rotate((radians * 180) / Math.PI);
       return rotate.call(this.ctx, radians);
     };
 
-    const translate = this.ctx.translate;
+    const { translate } = this.ctx;
     this.ctx.translate = (dx, dy) => {
       xform = xform.translate(dx, dy);
       return translate.call(this.ctx, dx, dy);
     };
 
-    const transform = this.ctx.transform;
+    const { transform } = this.ctx;
     this.ctx.transform = (a, b, c, d, e, f) => {
       const m2 = svg.createSVGMatrix();
       m2.a = a;
@@ -82,7 +83,7 @@ class DrawImage {
       return transform.call(this.ctx, a, b, c, d, e, f);
     };
 
-    const setTransform = this.ctx.setTransform;
+    const { setTransform } = this.ctx;
     this.ctx.setTransform = (a, b, c, d, e, f) => {
       xform.a = a;
       xform.b = b;

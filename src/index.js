@@ -26,7 +26,7 @@ export default class PopcornSlide {
 
     this.ctx = this.canvas.getContext('2d');
 
-    let imgList = this.list.map((src) => {
+    let imgList = this.list.map(src => {
       const img = new Image();
       img.src = `${src.url}`;
       const ratio = img.height / img.width;
@@ -38,14 +38,14 @@ export default class PopcornSlide {
 
     imgList = imgList.map((item, i) => {
       const b = item;
-      b.position = i !== 0 ?
-        listWidth[i - 1] + imgList[i - 1].position : 0; // refatorar esse calculo
+      b.position = i !== 0 ? listWidth[i - 1] + imgList[i - 1].position : 0; // refatorar esse calculo
       return b;
     });
 
     this.drawImage = new DrawImage(this.canvas, this.ctx, imgList);
     this.makeSlide = new MakeSlide(
-      this.canvas, imgList,
+      this.canvas,
+      imgList,
       this.ctx,
       this.width,
       this.height,
