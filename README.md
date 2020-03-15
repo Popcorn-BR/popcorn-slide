@@ -1,4 +1,4 @@
-<p align="center"><img width="300" src="https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2FPopcorn-logo.png?alt=media&token=cfcd67f0-d790-4563-843b-7b6cdc869d63" alt="Vue logo"></p>
+<p align="center"><img width="200" src="https://firebasestorage.googleapis.com/v0/b/imagens-da997.appspot.com/o/popcorn-slide%2FPopcorn-logo.png?alt=media&token=cfcd67f0-d790-4563-843b-7b6cdc869d63" alt="Vue logo"></p>
 
 # Popcorn Slide
 
