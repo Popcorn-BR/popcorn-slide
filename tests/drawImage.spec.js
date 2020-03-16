@@ -22,6 +22,14 @@ describe('DrawImage', () => {
   });
 
   describe('Popcorn.DrawImage.redraw', () => {
-    it('should return true', () => {});
+    it('should return true', () => {
+      const call = drawImage.redraw();
+    });
+  });
+
+  describe('Popcorn.DrawImage.redraw', () => {
+    it('should return true', () => {
+      const call = drawImage.trackTransforms();
+    });
   });
 });

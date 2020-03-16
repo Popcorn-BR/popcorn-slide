@@ -7,6 +7,7 @@ class DrawImage {
   }
 
   redraw() {
+    if (!this.ctx) return;
     // Clear the entire canvas
     const p1 = this.ctx.transformedPoint(0, 0);
     const p2 = this.ctx.transformedPoint(this.canvas.width, this.canvas.height);
