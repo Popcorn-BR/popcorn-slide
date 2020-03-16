@@ -7,27 +7,20 @@ class DrawImage {
   }
 
   redraw() {
-    return new Promise(resolve => {
-      if (resolve) {
-        // Clear the entire canvas
-        const p1 = this.ctx.transformedPoint(0, 0);
-        const p2 = this.ctx.transformedPoint(
-          this.canvas.width,
-          this.canvas.height
-        );
-        this.ctx.clearRect(p1.x, p1.y, p2.x - p1.x, p2.y - p1.y);
+    if (!this.ctx) return;
+    // Clear the entire canvas
+    const p1 = this.ctx.transformedPoint(0, 0);
+    const p2 = this.ctx.transformedPoint(this.canvas.width, this.canvas.height);
+    this.ctx.clearRect(p1.x, p1.y, p2.x - p1.x, p2.y - p1.y);
 
-        this.ctx.save();
-        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.restore();
-        this.ctx.stroke();
+    this.ctx.save();
+    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.restore();
+    this.ctx.stroke();
 
-        this.list.forEach(({ width, height, img, position }) => {
-          this.ctx.drawImage(img, position, 0, width, height);
-        });
-        resolve();
-      }
+    this.list.forEach(({ width, height, img, position }) => {
+      this.ctx.drawImage(img, position, 0, width, height);
     });
   }
 
