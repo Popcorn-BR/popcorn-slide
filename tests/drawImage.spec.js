@@ -13,8 +13,23 @@ describe('DrawImage', () => {
     });
 
     it('should have trackTransforms method', () => {
-      // eslint-disable-next-line no-unused-expressions
       expect(drawImage.trackTransforms).to.exist;
+    });
+  });
+
+  describe('Popcorn.DrawImage.redraw', () => {
+    it('should return true', () => {});
+  });
+
+  describe('Popcorn.DrawImage.redraw', () => {
+    it('should return true', () => {
+      const call = drawImage.redraw();
+    });
+  });
+
+  describe('Popcorn.DrawImage.redraw', () => {
+    it('should return true', () => {
+      const call = drawImage.trackTransforms();
     });
   });
 });

@@ -7,29 +7,23 @@ class DrawImage {
   }
 
   redraw() {
-    return new Promise((resolve) => {
-      if (resolve) {
-        // Clear the entire canvas
-        const p1 = this.ctx.transformedPoint(0, 0);
-        const p2 = this.ctx.transformedPoint(
-          this.canvas.width,
-          this.canvas.height
-        );
-        this.ctx.clearRect(p1.x, p1.y, p2.x - p1.x, p2.y - p1.y);
+    if (!this.ctx) return;
+    // Clear the entire canvas
+    const p1 = this.ctx.transformedPoint(0, 0);
+    const p2 = this.ctx.transformedPoint(this.canvas.width, this.canvas.height);
+    this.ctx.clearRect(p1.x, p1.y, p2.x - p1.x, p2.y - p1.y);
 
-        this.ctx.save();
-        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.restore();
-        this.ctx.stroke();
+    this.ctx.save();
+    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.restore();
+    this.ctx.stroke();
 
-        this.list.forEach(({ width, height, img, position }) => {
-          this.ctx.drawImage(img, position, 0, width, height);
-        });
-        resolve();
-      }
+    this.list.forEach(({ width, height, img, position }) => {
+      this.ctx.drawImage(img, position, 0, width, height);
     });
   }
+
   // eslint-disable-next-line class-methods-use-this
   trackTransforms() {
     if (!this.ctx) return;
@@ -39,13 +33,13 @@ class DrawImage {
     this.ctx.getTransform = () => xform;
 
     const savedTransforms = [];
-    const save = this.ctx.save;
+    const { save } = this.ctx;
     this.ctx.save = () => {
       savedTransforms.push(xform.translate(0, 0));
       return save.call(this.ctx);
     };
 
-    const restore = this.ctx.restore;
+    const { restore } = this.ctx;
     this.ctx.restore = () => {
       xform = savedTransforms.pop();
       return restore.call(this.ctx);
@@ -57,19 +51,19 @@ class DrawImage {
       return s.call(this.ctx, sx, sy);
     };
 
-    const rotate = this.ctx.rotate;
-    this.ctx.rotate = (radians) => {
+    const { rotate } = this.ctx;
+    this.ctx.rotate = radians => {
       xform = xform.rotate((radians * 180) / Math.PI);
       return rotate.call(this.ctx, radians);
     };
 
-    const translate = this.ctx.translate;
+    const { translate } = this.ctx;
     this.ctx.translate = (dx, dy) => {
       xform = xform.translate(dx, dy);
       return translate.call(this.ctx, dx, dy);
     };
 
-    const transform = this.ctx.transform;
+    const { transform } = this.ctx;
     this.ctx.transform = (a, b, c, d, e, f) => {
       const m2 = svg.createSVGMatrix();
       m2.a = a;
@@ -82,7 +76,7 @@ class DrawImage {
       return transform.call(this.ctx, a, b, c, d, e, f);
     };
 
-    const setTransform = this.ctx.setTransform;
+    const { setTransform } = this.ctx;
     this.ctx.setTransform = (a, b, c, d, e, f) => {
       xform.a = a;
       xform.b = b;
