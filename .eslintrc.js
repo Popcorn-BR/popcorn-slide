@@ -22,6 +22,7 @@ module.exports = {
     "no-param-reassign": "off",
     "no-undef": "off",
     "no-restricted-properties": "off",
+    "no-unused-expressions": "off",
     "no-unused-vars": ["error", {"argsIgnorePattern": "next"}]
   },
 };
