@@ -55,6 +55,33 @@ const config = {
 const popcorn = new PopcornSlide(config);
 
 ```
+## Methods
+
+> Follow the methods that the library provides.
+
+### popcorn.previous()
+
+> Rewind an image by calling this method.
+
+
+
+**Example**
+
+```js
+  document.querySelector('.button-previous').addEventListener('click', () => popcorn.previous());
+```
+
+### popcorn.next()
+
+> Advance an image by calling this method.
+
+
+
+**Example**
+
+```js
+  document.querySelector('.button-next').addEventListener('click', () => popcorn.next());
+```
 
 ## Contributing
 
