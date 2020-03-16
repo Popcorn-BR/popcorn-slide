@@ -19,11 +19,26 @@ export default class PopcornSlide {
 
   async init() {
     if (!this.canvas) return;
-    this.canvas.width = this.width;
-    this.canvas.height = this.height;
+
+    if (this.width && this.height) {
+      this.canvas.width = this.width;
+      this.canvas.height = this.height;
+    } else {
+      this.canvas.width = this.canvas.offsetWidth;
+      this.canvas.height = this.canvas.offsetHeight;
+      this.width = this.canvas.offsetWidth;
+      this.height = this.canvas.offsetHeight;
+      this.responsiveMode();
+    }
 
     this.ctx = this.canvas.getContext('2d');
+    await this.classInstantiate();
 
+    this.drawShapes();
+    this.initEvents();
+  }
+
+  async classInstantiate() {
     let imgList = await Promise.all(this.getImages(this.list));
 
     const listWidth = imgList.map(i => i.width);
@@ -43,14 +58,23 @@ export default class PopcornSlide {
       this.height,
       this.scale
     );
-
-    this.drawShapes();
-    this.initEvents();
+    return true;
   }
 
   drawShapes() {
     if (!this.canvas) return;
     this.drawImage.redraw();
+  }
+
+  responsiveMode() {
+    window.addEventListener('resize', () => {
+      this.canvas.width = this.canvas.offsetWidth;
+      this.canvas.height = this.canvas.offsetHeight;
+      this.width = this.canvas.offsetWidth;
+      this.height = this.canvas.offsetHeight;
+      this.classInstantiate();
+      this.drawShapes();
+    });
   }
 
   getImages(list) {
