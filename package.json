@@ -71,6 +71,7 @@
     "webpack": "^2.7.0"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0"
+    "babel-polyfill": "^6.26.0",
+    "jsdom": "^16.2.1"
   }
 }
