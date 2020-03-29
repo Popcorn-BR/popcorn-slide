@@ -3,17 +3,14 @@ import sinonChai from 'sinon-chai';
 
 import Zoom from '../src/Zoom';
 
-const jsdom = require('jsdom');
+const { createCanvas } = require('canvas');
 
-const { JSDOM } = jsdom;
-
-const { document } = new JSDOM(`...`).window;
+const canvas = createCanvas(200, 200);
+const ctx = canvas.getContext('2d');
 
 chai.use(sinonChai);
 
 describe('Popcorn', () => {
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
   const zoom = new Zoom(ctx, 2);
   describe('smoke test', () => {
     it('should have zoomIn method', () => {

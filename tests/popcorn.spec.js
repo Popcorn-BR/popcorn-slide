@@ -3,16 +3,13 @@ import sinonChai from 'sinon-chai';
 
 import PopcornSlide from '../src/index';
 
-const jsdom = require('jsdom');
+const { createCanvas } = require('canvas');
 
-const { JSDOM } = jsdom;
-
-const { document } = new JSDOM(`...`).window;
+const canvas = createCanvas(200, 200);
 
 chai.use(sinonChai);
 
 describe('Popcorn', () => {
-  const canvas = document.createElement('canvas');
   const list = [
     {
       url:

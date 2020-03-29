@@ -2,6 +2,12 @@ import 'babel-polyfill';
 import DrawImage from './DrawImage';
 import MakeSlide from './MakeSlide';
 
+const jsdom = require('jsdom');
+
+const { JSDOM } = jsdom;
+
+const { document } = new JSDOM(`...`).window;
+
 export default class PopcornSlide {
   constructor({ canvas, list, width, height, scale = 2 }) {
     this.canvas = canvas;
@@ -82,7 +88,7 @@ export default class PopcornSlide {
     return list.map(
       src =>
         new Promise((resolve, reject) => {
-          const img = new Image();
+          const img = document.createElement('img');
           img.src = `${src.url}`;
           img.onload = () => {
             const ratio = img.height / img.width;
