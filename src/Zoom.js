@@ -10,11 +10,6 @@ class Zoom {
     this.oldOffY = 0;
   }
 
-  init() {
-    if (!this.ctx) return;
-    this.resetExtremities();
-  }
-
   zoomIn(x, y, translateX, translateY, offX, offY) {
     if (!this.ctx) return true;
     const factor = Math.pow(this.scale, 1);
@@ -43,9 +38,9 @@ class Zoom {
     this.ctx.scale(factor, factor);
     this.ctx.translate(-x, -y);
 
-    const newTranslateX = this.getX(x, translateX);
+    const newTranslateX = this.getX(x, translateX, this.oldX);
 
-    const newTranslateY = this.getY(y, translateY);
+    const newTranslateY = this.getY(y, translateY, this.oldY);
 
     this.updateParams(x, newTranslateX, y, newTranslateY);
 
@@ -53,7 +48,6 @@ class Zoom {
   }
 
   updateParams(x, translateX, y, translateY) {
-    if (!this.ctx) return;
     this.oldX = x;
     this.oldTranslateX = translateX;
 
@@ -61,10 +55,8 @@ class Zoom {
     this.oldTranslateY = translateY;
   }
 
-  getY(y, translate) {
-    if (!this.ctx) return true;
-    if (!this.oldY) return translate;
-    let Y = y - this.oldY;
+  getY(y, translate, oldY) {
+    let Y = y - oldY;
     let Translate = translate;
 
     if (this.oldTranslateY !== Translate) {
@@ -82,10 +74,8 @@ class Zoom {
     return Translate;
   }
 
-  getX(x, translate) {
-    if (!this.ctx) return true;
-    if (!this.oldX) return translate;
-    let newX = this.oldX - x;
+  getX(x, translate, oldX) {
+    let newX = oldX - x;
     let newTranslate = translate;
 
     if (this.oldTranslateX !== newTranslate) {

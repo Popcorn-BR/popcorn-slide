@@ -3,15 +3,16 @@ import sinonChai from 'sinon-chai';
 
 import Zoom from '../src/Zoom';
 
+const { createCanvas } = require('canvas');
+
+const canvas = createCanvas(200, 200);
+const ctx = canvas.getContext('2d');
+
 chai.use(sinonChai);
 
 describe('Popcorn', () => {
-  const zoom = new Zoom();
+  const zoom = new Zoom(ctx, 2);
   describe('smoke test', () => {
-    it('should have init method', () => {
-      expect(zoom.init).to.exist;
-    });
-
     it('should have zoomIn method', () => {
       expect(zoom.zoomIn).to.exist;
     });
@@ -33,11 +34,6 @@ describe('Popcorn', () => {
     });
   });
 
-  describe('Popcorn.Zoom.init', () => {
-    it('should have init method', () => {
-      const call = zoom.init();
-    });
-  });
   describe('Popcorn.Zoom.zoomIn', () => {
     it('should have zoomIn method', () => {
       const call = zoom.zoomIn();
@@ -68,7 +64,7 @@ describe('Popcorn', () => {
 
   describe('Popcorn.Zoom.getX', () => {
     it('should have getX method', () => {
-      const call = zoom.getX();
+      const call = zoom.getX(1, 1, 1);
     });
   });
 });
