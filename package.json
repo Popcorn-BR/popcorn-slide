@@ -68,7 +68,7 @@
     "rimraf": "^2.7.1",
     "sinon": "^6.3.5",
     "sinon-chai": "^3.5.0",
-    "webpack": "^2.7.0"
+    "webpack": "^5.75.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
